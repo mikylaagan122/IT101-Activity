@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login Form | Mikyla Agan</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            /* Cover background with given image */
+            background-image: url('C:\Users\Acer\OneDrive\Desktop'); /* Placeholder nga imahe */
+            background-image: url('https://tse2.mm.bing.net/th/id/OIP.3dnppuoML3v5XzwTMNIYCgHaEK?pid=Api&P=0&h=180'); /* nag isert kog pulic picture nga abstract blue wavy background gikan google */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height sa viewport */
+        }
+
+        .wrapper {
+            background-color: rgba(255, 255, 255, 0.9); /* white nga background nga may transparency */
+            padding: 20px 25px;
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 20px rgba(0,0,0,0.2); /* Shadow effect */
+            width: 320px; /* Width sa form */
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center; /* Centered nga text */
+            margin-bottom: 20px;
+            color: #333; /* Dark gray color */
+            font-weight: 700; /* Bold text */
+            font-size: 28px; /* Font size */
+            letter-spacing: 1px; /* Spacing sa letters */
+            text-transform: capitalize; /* Capitalize ang first letter */
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 22px; /* Spacing sa ubos sa input box */
+        }
+
+        .input-box input {
+            width: 100%; /* Full width sa input */
+            padding: 12px 20px 12px 45px; /* Padding sa input */
+            border: 1.5px solid #ccc; /* Border color */
+            border-radius: 6px; /* Rounded corners */
+            font-size: 16px; /* Font size */
+            transition: border-color 0.3s; /* Transition effect sa border color */
+        }
+
+        .input-box input:focus {
+            border-color: #007bff; /* Border color kung naka-focus */
+            outline: none; /* Wala'y outline */
+        }
+
+        .input-box i {
+            position: absolute;
+            left: 12px; /* Position sa icon */
+            top: 50%;
+            transform: translateY(-50%); /* Center vertically */
+            font-size: 22px; /* Font size sa icon */
+            color: #888; /* Gray color */
+            pointer-events: none; /* Wala'y interaction sa icon */
+        }
+
+        .tooltip {
+            position: absolute;
+            background-color: #333; /* Dark background sa tooltip */
+            color: #fff; /* White text */
+            padding: 5px 8px; /* Padding sa tooltip */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 12px; /* Font size */
+            bottom: 110%; /* Above the input */
+            left: 12px; /* Position sa tooltip */
+            margin-bottom: 6px; /* Spacing sa ubos */
+            display: none; /* Initially hidden */
+            z-index: 10; /* Above other elements */
+            width: max-content; /* Max width sa tooltip */
+            max-width: 260px; /* Limit sa width */
+            line-height: 1.2; /* Line height */
+            user-select: none; /* Wala'y selection */
+        }
+
+        .input-box:hover .tooltip {
+            display: block; /* I-display ang tooltip kung hover */
+        }
+
+        .remember-forgot {
+            display: flex; /* Flexbox layout */
+            justify-content: space-between; /* Space between items */
+            align-items: center; /* Center vertically */
+            margin-bottom: 22px; /* Spacing sa ubos */
+            font-size: 14px; /* Font size */
+        }
+
+        .remember-forgot label {
+            user-select: none; /* Wala'y selection */
+        }
+
+        .remember-forgot a {
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Wala'y underline */
+            transition: color 0.3s; /* Transition effect sa color */
+        }
+
+        .remember-forgot a:hover {
+            text-decoration: underline; /* Underline kung hover */
+            color: #0056b3; /* Darker blue color */
+        }
+
+        .btn {
+            width: 100%; /* Full width sa button */
+            padding: 12px; /* Padding sa button */
+            background-color: #007bff; /* Blue background */
+            border: none; /* Wala'y border */
+            border-radius: 6px; /* Rounded corners */
+            color: white; /* White text */
+            font-size: 17px; /* Font size */
+            font-weight: 600; /* Font weight */
+            cursor: pointer; /* Pointer cursor */
+            transition: background-color 0.3s; /* Transition effect sa background color */
+            margin-bottom: 12px; /* Spacing sa ubos */
+        }
+
+        .btn:hover {
+            background-color: #0056b3; /* Darker blue kung hover */
+        }
+
+        .cancel-btn {
+            width: 100%; /* Full width sa cancel button */
+            padding: 12px; /* Padding sa button */
+            background-color: #dc3545; /* Red background */
+            border: none; /* Wala'y border */
+            border-radius: 6px; /* Rounded corners */
+            color: white; /* White text */
+            font-size: 17px; /* Font size */
+            font-weight: 600; /* Font weight */
+            cursor: pointer; /* Pointer cursor */
+            transition: background-color 0.3s; /* Transition effect sa background color */
+            margin-bottom: 12px; /* Spacing sa ubos */
+        }
+
+        .cancel-btn:hover {
+            background-color: #c82333; /* Darker red kung hover */
+        }
+
+        .register-link {
+            text-align: center; /* Centered text */
+            font-size: 14px; /* Font size */
+        }
+
+        .register-link a {
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Wala'y underline */
+            transition: color 0.3s; /* Transition effect sa color */
+        }
+
+        .register-link a:hover {
+            text-decoration: underline; /* Underline kung hover */
+            color: #0056b3; /* Darker blue color */
+        }
+
+        /* Pop-up Styles */
+        .popup {
+            display: none; /* Initially hidden */
+            position: fixed; /* Fixed position */
+            left: 0; top: 0; /* Position sa popup */
+            width: 100vw; height: 100vh; /* Full viewport width and height */
+            background-color: rgba(0,0,0,0.5); /* Semi-transparent black background */
+            justify-content: center; /* Center content */
+            align-items: center; /* Center vertically */
+            z-index: 50; /* Above other elements */
+        }
+
+        .popup-content {
+            background: white; /* White background */
+            padding: 25px 35px; /* Padding sa popup content */
+            border-radius: 10px; /* Rounded corners */
+            text-align: center; /* Centered text */
+            box-shadow: 0 0 15px rgba(0,0,0,0.3); /* Shadow effect */
+            max-width: 320px; /* Max width sa popup */
+            font-size: 18px; /* Font size */
+            font-weight: 600; /* Font weight */
+            color: #333; /* Dark gray color */
+        }
+
+        #closePopup {
+            margin-top: 20px; /* Spacing sa ibabaw */
+            padding: 10px 20px; /* Padding sa button */
+            font-size: 16px; /* Font size */
+            background-color: #007bff; /* Blue background */
+            border: none; /* Wala'y border */
+            border-radius: 6px; /* Rounded corners */
+            color: white; /* White text */
+            cursor: pointer; /* Pointer cursor */
+            transition: background-color 0.3s; /* Transition effect sa background color */
+        }
+
+        #closePopup:hover {
+            background-color: #0056b3; /* Darker blue kung hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <form id="loginForm" action="" novalidate>
+            <h1>Login</h1>
+
+            <div class="input-box">
+                <input type="email" placeholder="Email Address" required aria-describedby="emailHelp" />
+                <i class='bx bxs-user-circle'></i>
+                <div class="tooltip" id="emailHelp">Enter your registered email address (e.g., user@example.com).</div>
+            </div>
+
+            <div class="input-box">
+                <input type="password" placeholder="Password" required minlength="8" aria-describedby="passwordHelp" />
+                <i class='bx bxs-lock-alt'></i>
+                <div class="tooltip" id="passwordHelp">Password should be at least 8 characters.</div>
+            </div>
+
+            <div class="remember-forgot">
+                <label><input type="checkbox" /> Remember Me</label>
+                <a href="#" tabindex="0">Forgot Password</a>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+            <button type="button" class="cancel-btn" onclick="cancelLogin()">Cancel</button>
+
+            <div class="register-link">
+                <p>Don't have an account? <a href="#" tabindex="0">Register</a></p>
+            </div>
+        </form>
+    </div>
+
+    <div id="welcomePopup" class="popup" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle" aria-describedby="welcomeDesc">
+        <div class="popup-content">
+            <p id="welcomeTitle">Welcome!</p>
+            <p id="welcomeDesc">You have successfully logged in.</p>
+            <button id="closePopup">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function cancelLogin() {
+            document.getElementById('loginForm').reset(); /* I-reset ang form */
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); /* I-prevent ang default nga submit action */
+
+            // Basic client-side validation example
+            const emailInput = this.querySelector('input[type="email"]');
+            const passwordInput = this.querySelector('input[type="password"]');
+
+            if (!emailInput.checkValidity()) {
+                alert('Please enter a valid email address.'); /* Alert kung sayop ang email */
+                emailInput.focus(); /* I-focus ang email input */
+                return;
+            }
+
+            if (!passwordInput.checkValidity()) {
+                alert('Password should be at least 8 characters.'); /* Alert kung sayop ang password */
+                passwordInput.focus(); /* I-focus ang password input */
+                return;
+            }
+
+            // Show welcome pop-up
+            document.getElementById('welcomePopup').style.display = 'flex'; /* I-display ang welcome popup */
+        });
+
+        document.getElementById('closePopup').addEventListener('click', () => {
+            document.getElementById('welcomePopup').style.display = 'none'; /* I-hide ang popup */
+        });
+    </script>
+</body>
+</html>
